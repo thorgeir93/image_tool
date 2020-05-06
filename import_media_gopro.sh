@@ -7,7 +7,8 @@
 
 set -o errexit
 
-gphoto2 --auto-detect
-gphoto2 --get-all-files
+#gphoto2 --auto-detect
+#gphoto2 --get-all-files
 
+cp /run/media/thorgeir/8765-4321/DCIM/100GOPRO/* ./
 bash move_photos_from.sh $(pwd)
