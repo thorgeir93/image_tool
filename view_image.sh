@@ -1,5 +1,7 @@
 #!/bin/bash
+# vim: set foldmethod=manual:
 # View photos in a given directory.
+#
 #
 # KEYS:
 #
@@ -8,7 +10,7 @@
 #   6 - Removes the focus photo. Only the focused image.
 #   7 - Removes the focus photo. Both JPG and CR2.
 #
-# Usage: bash view_img.sh <DIRECTORY>
+# Usage: bash view_image.sh <DIRECTORY>
 #
 DIRECTORY=${1}
 
@@ -28,7 +30,7 @@ mv_img=${tool_dir}/mv_image.sh
 # CR2 only supported for now.
 feh -F *.CR2 \
     --action1 "${mv_img} $(pwd)/%f $(pwd)/use01" \
-    --action2 "${mv_img} $(pwd)/%f $(pwd)/use01; ${mv_img} $(pwd)/%f $(pwd)/use02" \
+    --action2 "${mv_img} $(pwd)/%f $(pwd)/use02" \
     --action7 "${tool_dir}/rm_image.sh $(pwd)/%N"
 
 popd

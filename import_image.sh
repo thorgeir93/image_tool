@@ -6,6 +6,7 @@
 # it will be moved into directory 2019/2019_10_23 into pictures folder.
 
 set -o errexit
+set -o xtrace
 
 gphoto2 --auto-detect
 gphoto2 --get-all-files

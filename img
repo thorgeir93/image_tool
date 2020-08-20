@@ -1,0 +1,7 @@
+#!/bin/bash
+set -o xtrace
+
+TARGET_DIR=$(pwd)
+pushd /home/thorgeir/github/thorgeir/image_tool/
+python img.py --target-dir ${TARGET_DIR} ${@}
+popd

@@ -1,5 +1,12 @@
 # image_tool
 
+## Install
+Link the bash file `img`, located in this repository, to the `/usr/bin/img` so the the command `img` will be available in the terminal.
+```
+ln -s /home/thorgeir/github/thorgeir/image_tool/img /usr/bin/img
+```
+After running the above command, you can open a new terminal and run `img -h` to get started.
+
 ## import_photos.sh
 Run `bash import_photos.sh` after you have connect your camera to your Linux PC.
 
