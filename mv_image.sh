@@ -10,4 +10,7 @@ set -o xtrace
 
 filepath=${1}; shift
 filepath=${filepath%%.*}
+
+mkdir -p ${1}
+
 mv ${filepath}.* ${1}/
