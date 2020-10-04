@@ -30,6 +30,7 @@ def parse_arguments():
 
     parser_view = subparsers.add_parser('view') 
     parser_view.add_argument('-s', '--script', default='view_image.sh')
+    parser_view.add_argument('-e', '--extension', default='cr2')
 
     parser_view = subparsers.add_parser('import') 
     parser_view.add_argument('-s', '--script', default='import_image.sh')
@@ -39,9 +40,11 @@ def parse_arguments():
     return args
 
 
-def bash(scriptpath, target_dir):
+def bash(scriptpath, target_dir, args=[]):
     """ Run bash command. """
     command = [scriptpath, target_dir]
+    command.extend(args)
+
     print('+ {0}'.format(' '.join(command)))
 
     process = subprocess.Popen(
@@ -53,11 +56,26 @@ def bash(scriptpath, target_dir):
     output, error = process.communicate()
 
 
+def view(scriptpath, target_dir, args=[]):
+    """
+    """
+    extension = args.extension
+
+    if not extension:
+        extension = 'cr2'
+
+    bash(scriptpath, args.target_dir, args=[extension])
+    
+
 def main(args):
     """ Run an image tool with given args. """
     current_dir = os.path.dirname(os.path.abspath(__file__))
     scriptpath = os.path.join(current_dir, args.script)
-    bash(scriptpath, args.target_dir)
+
+    if args.script.startswith('view'):
+        view(scriptpath, args.target_dir, args=args)
+    else:
+        bash(scriptpath, args.target_dir)
 
 
 if __name__ == '__main__':
