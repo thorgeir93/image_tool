@@ -8,7 +8,30 @@
 set -o errexit
 set -o xtrace
 
-gphoto2 --auto-detect
-gphoto2 --get-all-files
+function import_ricoh () {
+    #TODO Use ACTION in gphoto2 app. See gphoto2 manpage.
+    mkdir -p ./tmp
+    pushd ./tmp
+    gphoto2 --auto-detect
+    gphoto2 --get-all-files --filename=%f_%03n.%C
+    rm ./*.txt
+    popd
+    bash move_photos_from.sh $(pwd)/tmp/
+    popd
+}
 
-bash move_photos_from.sh $(pwd)
+
+function import_6d () {
+    gphoto2 --auto-detect
+    gphoto2 --get-all-files
+    
+    bash move_photos_from.sh $(pwd)
+}
+
+CAMERA_MODEL=$(gphoto2 --summary 2>/dev/null | grep -i model)
+
+if [[ "$CAMERA_MODEL" == *"RICOH"* ]]; then
+    import_ricoh
+else
+    import_6d
+fi
