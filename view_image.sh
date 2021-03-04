@@ -37,12 +37,17 @@ cp_img=${tool_dir}/cp_image.sh
 # Match case insensitive patterns
 shopt -s nocaseglob
 
+# "allows filename patterns which match no files to
+#   expand to a null string, rather than themselves"
+shopt -s nullglob
+
 # CR2 only supported for now.
-feh -F -d -S filename *.${EXTENSION} \
+#feh -F -d -S filename *.{DNG,CR2} \
+feh -F -d -S filename *.{DNG,CR2} \
     --action1 "${mv_img} $(pwd)/%f $(pwd)/use01" \
     --action2 "${mv_img} $(pwd)/%f $(pwd)/use02" \
     --action4 "${cp_img} $(pwd)/%f $(pwd)/use01" \
-    --action5 "${cp_img} $(pwd)/%f $(pwd)/use02" \
+    --action5 "${cp_img} $(pwd)/%f /home/thorgeir/photos/collection" \
     --action7 "${tool_dir}/rm_image.sh $(pwd)/%N"
 
 popd
