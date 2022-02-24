@@ -18,13 +18,13 @@ set -o errexit
 
 IMG_SOURCE_DIR=${1}; shift
 
-IMG_DEST_DIR=~/photos
+IMG_DEST_DIR=~/media/photos
 
 # "allows filename patterns which match no files to
 #   expand to a null string, rather than themselves"
 shopt -s nullglob
 
-for img in ${IMG_SOURCE_DIR}/*.{MP4,THM,JPG,CR2,MOV,DNG}; do
+for img in ${IMG_SOURCE_DIR}/*.{MP4,THM,JPG,CR2,MOV,DNG,NEF}; do
 
     img_modified_date=$(stat -c %y $img | sed 's/-/_/g' | cut -d' ' -f1)
     img_modified_year=$(echo ${img_modified_date} | cut -d'_' -f1)
