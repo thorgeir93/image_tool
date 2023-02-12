@@ -41,7 +41,6 @@ shopt -s nullglob
 
 for img in ${IMG_SOURCE_DIR}/*.{MP4,JPG,jpg,CR2,MOV,DNG,xmp,NEF}; do
 
-
     # using identify is too slow!! maybe when import, use stats (not as accuraty)
 
     if [[ "${FAST}" == "true" ]]; then
@@ -51,7 +50,7 @@ for img in ${IMG_SOURCE_DIR}/*.{MP4,JPG,jpg,CR2,MOV,DNG,xmp,NEF}; do
         img_modified_date=$(exiftool -CreateDate -csv $img | tail -n1 | cut -d, -f2 | cut -d" " -f1 | sed 's/:/_/g')
         img_modified_year=$(identify -verbose $img | grep exif:DateTimeOriginal | cut -d: -f3)
     fi
-    
+
     img_dest_folder=${IMG_DEST_DIR}/${img_modified_year}/${img_modified_date}
     mkdir -p ${img_dest_folder}
 

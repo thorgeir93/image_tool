@@ -21,8 +21,10 @@ function import_ricoh () {
 
 
 function import_6d () {
+    #pushd /var/storage/media/import
     gphoto2 --get-all-files
     bash move_photos_from.sh $(pwd)
+    #popd
 }
 
 # Connect to connected camera
