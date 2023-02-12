@@ -43,7 +43,7 @@ shopt -s nullglob
 
 # CR2 only supported for now.
 #feh -F -d -S filename *.{DNG,CR2} \
-feh -F -d -S filename *.{DNG,CR2} \
+feh -F -d -S filename *.{jpg,DNG,CR2} \
     --action1 "${mv_img} $(pwd)/%f $(pwd)/use01" \
     --action2 "${mv_img} $(pwd)/%f $(pwd)/use02" \
     --action4 "${cp_img} $(pwd)/%f $(pwd)/use01" \
