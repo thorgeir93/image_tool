@@ -39,7 +39,7 @@ FAST=${FAST:-true}
 #   expand to a null string, rather than themselves"
 shopt -s nullglob
 
-for img in ${IMG_SOURCE_DIR}/*.{MP4,JPG,jpg,CR2,MOV,DNG,xmp,NEF}; do
+for img in ${IMG_SOURCE_DIR}/*.{MP4,JPG,jpg,CR2,MOV,DNG,xmp,NEF,ARW}; do
 
     # using identify is too slow!! maybe when import, use stats (not as accuraty)
 

@@ -27,6 +27,11 @@ function import_6d () {
     #popd
 }
 
+function import_sonya7iii () {
+    gphoto2 --get-all-files
+    bash move_photos_from.sh $(pwd)
+}
+
 # Connect to connected camera
 gphoto2 --auto-detect
 
@@ -34,6 +39,8 @@ CAMERA_MODEL=$(gphoto2 --summary 2>/dev/null | grep -i model)
 
 if [[ "$CAMERA_MODEL" == *"RICOH"* ]]; then
     import_ricoh
+elif [[ "$CAMERA_MODEL" == *"ILCE-7M3"* ]]; then
+    import_sonya7iii
 else
     import_6d
 fi
