@@ -7,5 +7,4 @@
 #  <usb-uuid> - Find the usb uuid with blkid
 # 
 
-mkdir -p /mnt/drone
-bash import_from_usb.sh "9C33-6BBD" "/mnt/drone"
+bash import_from_usb.sh "3032-3033" "/mnt/sony"
