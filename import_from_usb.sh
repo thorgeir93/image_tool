@@ -18,11 +18,11 @@ set -o xtrace
 USB_UUID="$1"
 MOUNT_PATH="$2"
 
-if [ -z "$USB_UUID" ] || [ -z "$MOUNT_PATH" ]; then
-  echo "Usage: ./import_from_usb.sh USB_ID MOUNT_PATH"
-  echo "Example: ./import_from_usb.sh 054c:0994 /media/username/SD_CARD"
-  exit 1
-fi
+#if [ -z "$USB_UUID" ] || [ -z "$MOUNT_PATH" ]; then
+#  echo "Usage: ./import_from_usb.sh USB_ID MOUNT_PATH"
+#  echo "Example: ./import_from_usb.sh 054c:0994 /media/username/SD_CARD"
+#  exit 1
+#fi
 
 
 DEVICE_PATH=$(lsblk -pfr -o NAME,UUID | grep "$USB_UUID" | cut -d' ' -f1)
@@ -36,13 +36,13 @@ function mount_path_init () {
 		echo "Path '$MOUNT_PATH' exists."
 	else
 		echo "Path '$MOUNT_PATH' does not exist."
-    	sudo mkdir -p $MOUNT_PATH 
+    	sudo mkdir -p $MOUNT_PATH
 	fi
 }
 
 function mount_usb () {
     # TODO verify device path.
-    sudo mount $DEVICE_PATH $MOUNT_PATH 
+    sudo mount $DEVICE_PATH $MOUNT_PATH
 }
 
 function import_photos () {
@@ -64,10 +64,10 @@ function import_from_usb() {
     echo "This method assumes that the drone's disk card "
     echo "is inserted into the computer using USB adapter."
 
-    mount_path_init
-    mount_usb
+    #mount_path_init
+    #mount_usb
     import_photos
- 
+
     echo "Please unmount the device $DEVICE_PATH ($UUID) after with this command:"
     echo "$ sudo umount $DEVICE_PATH"
 }
